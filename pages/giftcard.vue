@@ -56,7 +56,7 @@
             "
           >
             <img
-              src="/gift-card/gift-card1.png"
+              src="/island/gift-card/gift-card1.png"
               alt="gift card"
               class="h-60 w-full"
             />
@@ -93,7 +93,7 @@
             "
           >
             <img
-              src="/gift-card/gift-card2.png"
+              src="/island/gift-card/gift-card2.png"
               alt="gift card"
               class="h-60 w-full"
             />
