@@ -9,6 +9,7 @@
         <div
           class="
             flex flex-row flex-wrap
+            divide-x divide-gray-400
             mt-4
             mb-4
             text-xs
@@ -17,7 +18,23 @@
             lg:mx-auto
           "
         >
-          <a
+          <nuxt-link
+            v-for="(f, fx) in footer"
+            :key="fx"
+            :to="f.link"
+            class="
+              w-auto
+              px-1
+              mb-1
+              tracking-wider
+              text-center
+              cursor-pointer
+              hover:bg-gray-800 hover:text-white
+            "
+          >
+            {{ f.name }}
+          </nuxt-link>
+          <!-- <a
             :href="settings.ADMIN_PANEL_LINK"
             target="blank"
             class="
@@ -153,7 +170,7 @@
           >
             Become a merchant
           </a>
-          <!-- <span
+          <span
             class="
               w-auto
               px-1
@@ -162,8 +179,7 @@
               text-center
               border-r border-gray-400
               cursor-pointer
-              hover:bg-gray-800
-              hover:text-white
+              hover:bg-gray-800 hover:text-white
             "
             >Shipping</span
           >
@@ -176,12 +192,11 @@
               text-center
               border-r border-gray-400
               cursor-pointer
-              hover:bg-gray-800
-              hover:text-white
+              hover:bg-gray-800 hover:text-white
             "
           >
             Cancellation
-          </span> -->
+          </span>
           <nuxt-link
             to="/legal/return-policy"
             class="
@@ -197,18 +212,45 @@
           >
             Return Policy
           </nuxt-link>
-          <!-- <span
-            class="w-auto px-1 mb-1 tracking-wider text-center border-r border-gray-400 cursor-pointer hover:bg-gray-800 hover:text-white"
+          <span
+            class="
+              w-auto
+              px-1
+              mb-1
+              tracking-wider
+              text-center
+              border-r border-gray-400
+              cursor-pointer
+              hover:bg-gray-800 hover:text-white
+            "
             >Whitehat</span
           >
           <span
-            class="w-auto px-1 mb-1 tracking-wider text-center border-r border-gray-400 cursor-pointer hover:bg-gray-800 hover:text-white"
+            class="
+              w-auto
+              px-1
+              mb-1
+              tracking-wider
+              text-center
+              border-r border-gray-400
+              cursor-pointer
+              hover:bg-gray-800 hover:text-white
+            "
             >Blog</span
           >
           <span
-            class="w-auto px-1 mb-1 tracking-wider text-center border-r border-gray-400 cursor-pointer hover:bg-gray-800 hover:text-white"
+            class="
+              w-auto
+              px-1
+              mb-1
+              tracking-wider
+              text-center
+              border-r border-gray-400
+              cursor-pointer
+              hover:bg-gray-800 hover:text-white
+            "
             >Careers</span
-          > -->
+          >
           <nuxt-link
             to="/legal/privacy-policy"
             class="
@@ -298,7 +340,7 @@
             "
           >
             Blog
-          </nuxt-link>
+          </nuxt-link> -->
         </div>
 
         <span class="ps-1 my-4 mt-6 text-lg font-medium uppercase lg:mx-auto"
@@ -358,7 +400,7 @@
           </span>
         </div>
 
-        <!-- <div class="flex flex-col my-8 md:flex-row">
+        <div class="flex flex-col my-8 md:flex-row">
           <img
             v-lazy="'/img/footer/return.png'"
             alt=""
@@ -368,7 +410,7 @@
             <strong class="font-light">Return within 30days </strong> of
             receiving your order</span
           >
-        </div> -->
+        </div>
 
         <div class="flex flex-col md:flex-row mt-2">
           <img
@@ -558,6 +600,19 @@ export default {
     return {
       year: new Date().getFullYear(),
       popularSearches: null,
+      footer: [
+        { link: '/island/how-can-we-help/delivery', name: 'Delivery' },
+        { link: '/island/how-can-we-help/returns', name: 'Return' },
+        {
+          link: '/island/terms-and-conditions',
+          name: 'Terms and Conditions',
+        },
+        {
+          link: '/island/promotion-terms-and-conditions',
+          name: 'Promotion Terms and Conditions',
+        },
+        { link: '/island/how-can-we-help/contact-us', name: 'Contact Us' },
+      ],
     }
   },
   computed: {
