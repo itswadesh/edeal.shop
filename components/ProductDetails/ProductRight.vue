@@ -71,7 +71,7 @@
         <div>
           <div class="mb-1.5 sm:mb-3">
             <div class="flex flex-row my-auto items-baseline mb-1">
-              <b class="me-1 text-lg sm:text-lg">Rs.</b>
+              <b class="me-1 text-lg sm:text-lg"></b>
 
               <b class="me-2 text-base sm:text-xl">
                 {{ product.price | currency(store.currencySymbol) }}
@@ -596,7 +596,7 @@
               v-else-if="product.stock > 0 && product.stock < 5"
               class="text-sm text-primary-500 whitespace-nowrap"
             >
-              {{ product.stock }} remaining
+              Only {{ product.stock }} remaining
             </span>
 
             <span v-else class="text-sm text-accent-900 whitespace-nowrap">

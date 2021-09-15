@@ -9,7 +9,7 @@
         tracking-wide
         text-center
         bg-gray-800
-        text-accent-900 text-sm
+        text-white text-sm
       "
     >
       We are upgrading. Will not take much time.
@@ -80,6 +80,8 @@
             <h1
               v-else
               class="
+                w-28
+                md:w-40
                 text-lg
                 md:text-2xl
                 text-transparent
@@ -221,10 +223,7 @@
         <!--right header with icons block end -->
       </div>
 
-      <SearchAutocomplete
-        style="margin-top: 8px"
-        class="sticky top-0 lg:hidden"
-      />
+      <SearchAutocomplete class="lg:hidden" />
     </header>
   </div>
 </template>

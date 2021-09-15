@@ -1,188 +1,47 @@
 <template>
-  <section class="min-h-screen overflow-hidden bg-white">
-    <HeroSlider :banners="sliderBanners" />
+  <div class="container mx-auto bg-white">
+    <Megamenu class="hidden xl:flex px-10" />
 
-    <MainCategoryBanners class="mt-px" />
+    <HeroSlider :banners="sliderBanners" class="pb-5 md:pb-10" />
 
-    <SecondMainCategoryBanners class="mt-px" />
+    <Categories class="px-2 sm:px-10 pb-5 md:pb-10" />
 
-    <Categories class="mt-5 md:mt-10" />
+    <HeroBanners :banners="heroBanners" class="px-2 sm:px-10 pb-5 md:pb-10" />
 
-    <HeroBanners :banners="heroBanners" class="mt-5 md:mt-10" />
-
-    <BrandBanners
-      :ishome="true"
-      :brands="brandBanners && brandBanners.data"
-      class="mb-5 md:mb-0"
-    />
-
-    <ProductSlider
-      :details="youMayLikeProducts"
-      :heading="'You May Like'"
-      class="mb-5 md:mb-0"
-    />
-
-    <ProductSlider
-      :details="hotProducts"
-      :heading="'Trending'"
-      class="mb-5 md:mb-0"
-    />
-
-    <GallerySlider class="mt-5 md:mt-10" :banners="sliderBanners" />
-
-    <WantMore class="mt-5 md:mt-10" />
-  </section>
-</template>
-
-<script>
-import HeroSlider from '~/components/Island/HeroSlider.vue'
-import MainCategoryBanners from '~/components/Island/MainCategoryBanners.vue'
-import SecondMainCategoryBanners from '~/components/Island/SecondMainCategoryBanners.vue'
-import Categories from '~/components/Home/Categories.vue'
-import HeroBanners from '~/components/Home/HeroBanners.vue'
-import BrandBanners from '~/components/Home/BrandBanners.vue'
-import ProductSlider from '~/components/Home/ProductSlider.vue'
-import GallerySlider from '~/components/Island/GallerySlider.vue'
-import WantMore from '~/components/Island/WantMore.vue'
-
-export default {
-  components: {
-    HeroSlider,
-    MainCategoryBanners,
-    SecondMainCategoryBanners,
-    Categories,
-    HeroBanners,
-    BrandBanners,
-    ProductSlider,
-    GallerySlider,
-    WantMore,
-  },
-
-  data() {
-    return {
-      sliderBanners: null,
-      brandBanners: null,
-      youMayLikeProducts: null,
-      hotProducts: null,
-      heroBanners: null,
-    }
-  },
-
-  head() {
-    return {
-      title: 'Home',
-    }
-  },
-
-  created() {
-    this.getBanners()
-    this.getBrands()
-    this.getYouMayLikeProducts()
-    this.getHotProducts()
-  },
-
-  methods: {
-    async getBrands() {
-      // this.loading = true
-      try {
-        this.brandBanners = await this.$get('brand/brands', {
-          parent: null,
-          limit: 30,
-          page: 0,
-          sort: 'sort',
-          featured: true,
-        })
-      } catch (e) {
-      } finally {
-        // this.loading = false
-      }
-    },
-
-    async getBanners() {
-      this.loading = true
-      try {
-        const banners = await this.$get('banner/banners', {
-          sort: 'sort',
-          pageId: 'home',
-          active: true,
-        })
-
-        this.sliderBanners = banners.data.filter((b) => b.type === 'slider')
-      } catch (e) {
-      } finally {
-        this.loading = false
-      }
-    },
-
-    async getYouMayLikeProducts() {
-      this.loading = true
-      try {
-        this.youMayLikeProducts = await this.$get('product/trending', {
-          type: 'sale',
-        })
-      } catch (e) {
-      } finally {
-        this.loading = false
-      }
-    },
-
-    async getHotProducts() {
-      this.loading = true
-      try {
-        this.hotProducts = await this.$get('product/trending', { type: 'hot' })
-      } catch (e) {
-      } finally {
-        this.loading = false
-      }
-    },
-  },
-}
-</script>
-
-<style scoped>
-.mt-px {
-  margin-top: -5px;
-}
-</style>
-<template>
-  <div class="container mx-auto">
-    <Megamenu class="hidden xl:flex px-2 sm:px-10" />
-
-    <HeroSlider :banners="sliderBanners" />
-
-    <Categories class="px-2 sm:px-10 mb-5 md:mb-0" />
-
-    <HeroBanners :banners="heroBanners" class="px-2 sm:px-10 mb-5 md:mb-0" />
-
-    <Deals />
+    <Deals class="px-2 sm:px-10 pb-5 md:pb-10" />
 
     <div
       v-for="(p, ix) in pickedBanners"
       v-if="pickedBanners && pickedBanners.length"
       :key="ix"
-      class="px-2 sm:px-10 mb-5 md:mb-0"
     >
-      <HeroBannersSlider :banners="p && p.data" :title="p._id && p._id.title" />
+      <HeroBannersSlider
+        :banners="p && p.data"
+        :title="p._id && p._id.title"
+        class="sm:px-10 lg:px-7"
+      />
     </div>
 
     <ProductSlider
       :details="youMayLikeProducts"
+      :pg="pg"
       :heading="'You May Like'"
-      class="mb-5 md:mb-0"
+      class="pb-5 md:pb-10"
     />
 
     <ProductSlider
       :details="hotProducts"
+      :pg="pg"
       :heading="'Trending'"
-      class="mb-5 md:mb-0"
+      class="pb-5 md:pb-10"
     />
 
-    <VideoBanner :banners="videoBanners" class="px-2 sm:px-10 mb-5 md:mb-0" />
+    <VideoBanner :banners="videoBanners" class="px-2 sm:px-10 pb-5 md:pb-10" />
 
     <BrandBanners
       :ishome="true"
       :brands="brandBanners && brandBanners.data"
-      class="mb-5 md:mb-0"
+      class="px-2 sm:px-10 pb-5 md:pb-10"
     />
 
     <!-- <Discounts /> -->
@@ -192,8 +51,6 @@ export default {
     <!-- <FooterSection class="hidden lg:block" /> -->
     <!-- <GridComponents /> -->
     <!--    -->
-
-    <div class="h-10 bg-white w-full"></div>
   </div>
 </template>
 
@@ -212,6 +69,7 @@ import TRENDING from '~/gql/product/trending.gql'
 import BANNERS from '~/gql/banner/banners.gql'
 import GROUP_BY_BANNER from '~/gql/banner/groupByBanner.gql'
 import BRANDS from '~/gql/brand/brands.gql'
+import PRODUCT_GROUP from '~/gql/product/product_group.gql'
 import { TITLE, DESCRIPTION, KEYWORDS } from '~/shared/config'
 
 export default {
@@ -240,6 +98,7 @@ export default {
     return {
       hotProducts: null,
       youMayLikeProducts: null,
+      pg: null,
       visible: false,
       banners: null,
       brandBanners: null,
@@ -325,6 +184,7 @@ export default {
     this.getHotProducts()
     this.getYouMayLikeProducts()
     this.getBrands()
+    this.getProductGroups()
   },
   methods: {
     async getBrands() {
@@ -334,7 +194,6 @@ export default {
           parent: null,
           limit: 30,
           page: 0,
-          sort: 'sort',
           featured: true,
         })
         // this.brandBanners = (
@@ -463,6 +322,21 @@ export default {
       } finally {
         this.loading = false
       }
+    },
+
+    async getProductGroups() {
+      try {
+        this.pg = await this.$get('product/product_group', { id })
+        // this.pg = (
+        //   await this.$apollo.query({
+        //     query: PRODUCT_GROUP,
+        //     variables: { id },
+        //     fetchPolicy: 'no-cache',
+        //   })
+        // ).data.product_group
+        // this.checkWishlist()
+        console.log(pg)
+      } catch (e) {}
     },
   },
 }

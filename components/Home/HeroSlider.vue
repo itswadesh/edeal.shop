@@ -1,6 +1,6 @@
 <template>
-  <div class="focus:outline-none h-52 md:h-64 lg:h-80 xl:h-96">
-    <div class="flex justify-center">
+  <div class="bg-white h-48 md:h-64 lg:h-80 xl:h-96">
+    <div class="flex items-center justify-center">
       <progress
         v-if="loading"
         class="
@@ -34,6 +34,7 @@
         v-for="b in banners"
         :key="b.id"
         class="z-auto my-auto focus:outline-none"
+        aria-label="Slider Banners"
         @click="go(b.link)"
       >
         <img
@@ -42,15 +43,14 @@
             bg-white
             object-cover
             w-full
-            my-auto
             overflow-hidden
             bg-white
-            focus:outline-none
             h-48
             md:h-64
             lg:h-80
             xl:h-96
           "
+          alt="Slider Banners"
         />
       </button>
       <!-- v-if="loading" -->
@@ -110,7 +110,7 @@ export default {
           },
         ],
       },
-      skeleton: false,
+      skeleton: true,
       loading: false,
     }
   },
