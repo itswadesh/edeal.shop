@@ -1,6 +1,6 @@
 <template>
   <main v-if="details && details.length" class="bg-white text-gray-700">
-    <div class="pb-5 lg:pb-10 flex items-center justify-center space-x-2">
+    <div class="pb-5 md:pb-10 flex items-center justify-center space-x-2">
       <hr class="h-1 border-gray-300 flex-1" />
 
       <div
@@ -184,13 +184,13 @@ export default {
           {
             breakpoint: 1536,
             settings: {
-              slidesToShow: 5,
+              slidesToShow: 6,
             },
           },
           {
             breakpoint: 1280,
             settings: {
-              slidesToShow: 4,
+              slidesToShow: 5,
             },
           },
         ],
