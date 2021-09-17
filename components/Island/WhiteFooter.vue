@@ -489,7 +489,7 @@ export default {
   data() {
     return {
       year: new Date().getFullYear(),
-      popularSearches: null,
+      // popularSearches: null,
       footer: [
         { link: '/island/how-can-we-help/delivery', name: 'Delivery' },
         { link: '/island/how-can-we-help/returns', name: 'Return' },

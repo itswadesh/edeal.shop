@@ -1,9 +1,16 @@
 <template>
-  <div class="bg-white">
-    <Megamenu class="hidden xl:flex px-10" />
+  <section class="min-h-screen overflow-hidden bg-white">
+    <HeroSlider :banners="sliderBanners" />
 
-    <HeroSlider :banners="sliderBanners" class="mb-5 md:mb-10" />
+    <MainCategoryBanners
+      class="px-2 sm:px-10 mb-5 md:mb-10"
+      :banners="heroBanners"
+    />
 
+    <!-- <SecondMainCategoryBanners
+      class="px-2 sm:px-10 mb-5 md:mb-10"
+      :categories="shopByCategory"
+    /> -->
     <div class="container mx-auto">
       <Categories
         :categories="shopByCategory"
@@ -49,27 +56,17 @@
         :brands="brandBanners && brandBanners.data"
         class="px-2 sm:px-10 mb-5 md:mb-10"
       />
+
+      <!-- <GallerySlider class="mb-5 md:mb-10" :banners="sliderBanners" /> -->
+
+      <WantMore class="mb-5 md:mb-10" />
     </div>
-
-    <!-- <Discounts /> -->
-    <!-- <div>
-      <SelectedCategoryDetails />
-    </div> -->
-    <!-- <FooterSection class="hidden lg:block" /> -->
-    <!-- <GridComponents /> -->
-    <!--    -->
-  </div>
+  </section>
 </template>
-
 <script>
 import Megamenu from '~/components/Home/Megamenu.vue'
-import HeroSlider from '~/components/Home/HeroSlider.vue'
-import HeroBanners from '~/components/Home/HeroBanners.vue'
-import Categories from '~/components/Home/Categories.vue'
 import Deals from '~/components/Home/Deals.vue'
-import ProductSlider from '~/components/Home/ProductSlider.vue'
 import ProductSlider2 from '~/components/Home/ProductSlider2.vue'
-import BrandBanners from '~/components/Home/BrandBanners.vue'
 import HeroBannersSlider from '~/components/Home/HeroBannersSlider.vue'
 import VideoBanner from '~/components/Home/VideoBanner.vue'
 import HOME from '~/gql/groupQueries/HOME.gql'
@@ -79,23 +76,30 @@ import GROUP_BY_BANNER from '~/gql/banner/groupByBanner.gql'
 import BRANDS from '~/gql/brand/brands.gql'
 import PRODUCT_GROUP from '~/gql/product/product_group.gql'
 import { TITLE, DESCRIPTION, KEYWORDS } from '~/shared/config'
+import HeroSlider from '~/components/Island/HeroSlider.vue'
+import MainCategoryBanners from '~/components/Island/MainCategoryBanners.vue'
+import SecondMainCategoryBanners from '~/components/Island/SecondMainCategoryBanners.vue'
+import Categories from '~/components/Home/Categories.vue'
+import HeroBanners from '~/components/Home/HeroBanners.vue'
+import BrandBanners from '~/components/Home/BrandBanners.vue'
+import ProductSlider from '~/components/Home/ProductSlider.vue'
+import GallerySlider from '~/components/Island/GallerySlider.vue'
+import WantMore from '~/components/Island/WantMore.vue'
 
 export default {
   components: {
-    Megamenu,
     HeroSlider,
-    HeroBanners,
+    MainCategoryBanners,
+    SecondMainCategoryBanners,
     Categories,
-    Deals,
-    HeroBannersSlider,
-    ProductSlider,
-    ProductSlider2,
+    HeroBanners,
     BrandBanners,
-    // Discounts,
-    VideoBanner,
+    ProductSlider,
+    GallerySlider,
+    WantMore,
   },
 
-  layout: 'home',
+  layout: 'island',
 
   middleware: ['landing'],
 

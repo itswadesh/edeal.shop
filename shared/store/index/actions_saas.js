@@ -45,7 +45,7 @@ export default {
       const som = (
         await this.app.apolloProvider.defaultClient.query({
           query: INIT,
-          variables: { domain },
+          variables: { domain: 'www.edeal.shop' },
           errorPolicy: 'all',
         })
       ).data

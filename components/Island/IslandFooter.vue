@@ -159,8 +159,8 @@ export default {
 
       InsideMisiki: [
         { link: '/island/how-can-we-help/contact-us', name: 'Contact Us' },
-        { link: '/legal/about-us', name: 'About Us' },
-        { link: '/career', name: 'Career' },
+        { link: '/about', name: 'About Us' },
+        { link: '/careers', name: 'Career' },
         { link: '/contact-us', name: 'Disputes' },
       ],
 
