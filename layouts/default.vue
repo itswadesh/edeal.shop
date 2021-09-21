@@ -25,7 +25,11 @@
         <div
           class="mb-6 text-2xl font-bold text-center text-gray-800 md:text-3xl"
         >
-          <img src="/no/dog-png-1.png" alt="" class="mx-auto h-96 w-72" />
+          <img
+            v-lazy="`/no/dog-png-1.png?tr=w-288,h-384,fo-auto`"
+            alt=""
+            class="mx-auto h-96 w-72"
+          />
           <p>Oops! Store not found</p>
         </div>
 
@@ -55,7 +59,10 @@
     <OtpLogin v-if="showLoginModal" @showLogin="showLogin" />
 
     <Modal :show="store.closed" title="Store is not accepting orders now">
-      {{ store.closedMessage || 'Please visit back later' }}
+      <div class="flex flex-col items-center justify-center text-center">
+        <img v-lazy="`/store-closed.png?tr=h-384,fo-auto`" alt="" />
+        <span> {{ store.closedMessage || 'Please visit back later' }}</span>
+      </div>
     </Modal>
   </div>
 </template>

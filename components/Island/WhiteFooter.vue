@@ -390,7 +390,7 @@
       >
         <div class="flex flex-col md:flex-row mb-2">
           <img
-            v-lazy="'/img/footer/original.png'"
+            v-lazy="`/img/footer/original.png?tr=w-48,h-48,fo-auto`"
             alt=""
             class="object-contain w-12 h-12 p-1 my-auto bg-white rounded"
           />
@@ -402,7 +402,7 @@
 
         <div class="flex flex-col my-8 md:flex-row">
           <img
-            v-lazy="'/img/footer/return.png'"
+            v-lazy="`/img/footer/return.png?tr=w-48,h-48,fo-auto`"
             alt=""
             class="object-contain w-12 h-12 p-1 my-auto bg-white rounded"
           />
@@ -414,7 +414,7 @@
 
         <div class="flex flex-col md:flex-row mt-2">
           <img
-            v-lazy="'/img/footer/free.png'"
+            v-lazy="`/img/footer/free.png?tr=w-48,h-48,fo-auto`"
             alt=""
             class="object-contain w-12 h-12 p-1 my-auto bg-white rounded"
           />
@@ -426,9 +426,10 @@
       </div>
     </div>
 
-    <div class="w-full my-4 border-b-2 border-gray-400"></div>
-    <div class="flex flex-row justify-between">
-      <div class="text-sm font-normal tracking-wider md:mt-0 whitespace-nowrap">
+    <hr class="w-full my-4 border-t-2" />
+
+    <div class="flex flex-row items-center justify-between">
+      <div class="text-sm font-normal tracking-wider whitespace-nowrap">
         © {{ year }} {{ store.name }}
         <span v-if="store.websiteEmail" class="ms-2">
           {{ store.websiteEmail }}</span
@@ -437,10 +438,12 @@
 
       <!-- <LanguageSwitcher /> -->
 
+      <LanguageSwitch />
+
       <div class="flex flex-row items-center space-x-2">
         <div v-for="(i, ix) in icons" :key="ix" class="mb-1">
           <img
-            v-lazy="i.img"
+            v-lazy="`${i.img}?tr=w-48,h-28,fo-auto`"
             :alt="i.alt"
             class="h-7 w-12 bg-white border p-1 object-contain"
           />
@@ -452,10 +455,12 @@
 <script>
 // import LanguageSwitcher from '~/components/LanguageSwitcher'
 import NuxtLink from '~/components/NuxtLink.vue'
+import LanguageSwitch from '~/components/CurrencyLanguage/LanguageSwitch.vue'
 
 export default {
   components: {
     NuxtLink,
+    LanguageSwitch,
     // LanguageSwitcher
   },
   data() {
